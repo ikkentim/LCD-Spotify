@@ -1,0 +1,2160 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LogiFrame</name>
+    </assembly>
+    <members>
+        <member name="T:LogiFrame.ButtonEventArgs">
+            <summary>
+                Provides data for the LogiFrame.Frame.ButtonDown and LogiFrame.Frame.ButtonUp events.
+            </summary>
+        </member>
+        <member name="M:LogiFrame.ButtonEventArgs.#ctor(System.Int32)">
+            <summary>
+                Initializes a new instance of the LogiFrame.ButtonEventArgs class.
+            </summary>
+            <param name="button">0-based number of the button being pressed.</param>
+        </member>
+        <member name="P:LogiFrame.ButtonEventArgs.Button">
+            <summary>
+                Gets the 0-based number of the button being pressed.
+            </summary>
+        </member>
+        <member name="T:LogiFrame.Bytemap">
+            <summary>
+                Represents a single-color image in a bytearray
+            </summary>
+        </member>
+        <member name="F:LogiFrame.Bytemap.Empty">
+            <summary>
+                Represents an empty Bytemap.
+            </summary>
+        </member>
+        <member name="M:LogiFrame.Bytemap.FromBitmap(System.Drawing.Bitmap,LogiFrame.ConversionMethod)">
+            <summary>
+                Transform a System.Drawing.Bitmap into a LogiFrame.Bytemap.
+            </summary>
+            <param name="bitmap">The System.Drawing.Bitmap to transform.</param>
+            <param name="conversionMethod">The LogiFrame.ConversionMethod to use during the transformation.</param>
+        </member>
+        <member name="M:LogiFrame.Bytemap.FromBitmap(System.Drawing.Bitmap,System.Byte,System.Byte,System.Byte,System.Byte)">
+            <summary>
+                Transform a System.Drawing.Bitmap into a LogiFrame.Bytemap.
+            </summary>
+            <param name="bitmap">The System.Drawing.Bitmap to transform.</param>
+            <param name="maxR">The maximum red color value for a pixel to be filled.</param>
+            <param name="maxG">The maximum green color value for a pixel to be filled.</param>
+            <param name="maxB">The maximum blue color value for a pixel to be filled.</param>
+            <param name="minA">The minimum alpha value for a pixel to be filled.</param>
+            <returns>The new LogiFrame.Bytemap that this method creates. </returns>
+        </member>
+        <member name="M:LogiFrame.Bytemap.#ctor(System.Int32,System.Int32)">
+            <summary>
+                Initializes a new instance of the LogiFrame.Bytemap class.
+            </summary>
+            <param name="width">Initial width of the bytemap.</param>
+            <param name="height">Initial height of the bytemap.</param>
+        </member>
+        <member name="M:LogiFrame.Bytemap.#ctor(LogiFrame.Size)">
+            <summary>
+                Initializes a new instance of the LogiFrame.Bytemap class.
+            </summary>
+            <param name="size">Initial size of the bytemap.</param>
+        </member>
+        <member name="M:LogiFrame.Bytemap.Clone">
+            <summary>
+                Creates a copy of LogiFrame.Bytemap instance.
+            </summary>
+            <returns>The new LogiFrame.Bytemap that this method creates.</returns>
+        </member>
+        <member name="M:LogiFrame.Bytemap.SetPixel(LogiFrame.Location,System.Boolean)">
+            <summary>
+                Sets the content of the specified pixel in this LogiFrame.Bytemap.
+            </summary>
+            <param name="location">The location of the pixel to set.</param>
+            <param name="fill">Whether the pixel should be filled.</param>
+        </member>
+        <member name="M:LogiFrame.Bytemap.SetPixel(System.Int32,System.Int32,System.Boolean)">
+            <summary>
+                Sets the content of the specified pixel in this LogiFrame.Bytemap.
+            </summary>
+            <param name="x">The x-coordinate of the pixel to set.</param>
+            <param name="y">The y-coordinate of the pixel to set.</param>
+            <param name="fill">Whether the pixel should be filled.</param>
+        </member>
+        <member name="M:LogiFrame.Bytemap.GetPixel(LogiFrame.Location)">
+            <summary>
+                Gets the content of the specified pixel in this LogiFrame.Bytemap.
+            </summary>
+            <param name="location">The location of the pixel to get.</param>
+            <returns>Whether the pixel is filled</returns>
+        </member>
+        <member name="M:LogiFrame.Bytemap.GetPixel(System.Int32,System.Int32)">
+            <summary>
+                Gets the content of the specified pixel in this LogiFrame.Bytemap.
+            </summary>
+            <param name="x">The x-coordinate of the pixel to get.</param>
+            <param name="y">The y-coordinate of the pixel to get.</param>
+            <returns>Whether the pixel is filled</returns>
+        </member>
+        <member name="M:LogiFrame.Bytemap.Merge(LogiFrame.Bytemap,LogiFrame.Location)">
+            <summary>
+                Merges the given LogiFrame.Bytemap into this LogiFrame.Bytemap at the specified LogiFrame.Location.
+            </summary>
+            <param name="bytemap">The LogiFrame.Bytemap to merge into this LogiFrame.Bytemap.</param>
+            <param name="location">The LogiFrame.Location to merge the LogiFrame.Bytemap at.</param>
+        </member>
+        <member name="M:LogiFrame.Bytemap.op_Implicit(LogiFrame.Bytemap)~System.Drawing.Bitmap">
+            <summary>
+                Converts the specified LogiFrame.Bytemap instance to a System.Drawing.Bitmap instance.
+            </summary>
+            <param name="bytemap">The LogiFrame.Bytemap to be converted.</param>
+            <returns>The System.Drawing.Bitmap that results from the conversion.</returns>
+        </member>
+        <member name="M:LogiFrame.Bytemap.Resize">
+            <summary>
+                Resizes the byte array according to the Size.
+            </summary>
+        </member>
+        <member name="M:LogiFrame.Bytemap.size_Changed(System.Object,System.EventArgs)">
+            <summary>
+                Listener for Size.Changed.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="P:LogiFrame.Bytemap.Data">
+            <summary>
+                Gets the byte[] array container all the date of the canvas.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Bytemap.Transparent">
+            <summary>
+                Gets or sets whether the non-filled pixels should draw the lower-located
+                pixels when using the LogiFrame.Bytemap.Merge method.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Bytemap.TopEffect">
+            <summary>
+                Gets or sets whether pixels around the filled pixels should always be non-filled
+                when using the LogiFrame.Bytemap.Merge method.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Bytemap.Size">
+            <summary>
+                Gets or sets the LogiFrame.Size of this LogiFrame.Bytemap.
+            </summary>
+        </member>
+        <member name="T:LogiFrame.Components.Animation">
+            <summary>
+                Represents a drawable animation.
+            </summary>
+        </member>
+        <member name="T:LogiFrame.Components.Picture">
+            <summary>
+                Represents a drawable picture.
+            </summary>
+        </member>
+        <member name="T:LogiFrame.Components.Component">
+            <summary>
+                An abstract base class that provides functionality for the LogiFrame.Frame class.
+            </summary>
+        </member>
+        <member name="M:LogiFrame.Components.Component.#ctor">
+            <summary>
+                Initializes a new instance of the abstract LogiFrame.Components.Component class.
+            </summary>
+        </member>
+        <member name="M:LogiFrame.Components.Component.Finalize">
+            <summary>
+                Releases all resources used by LogiFrame.Components.Comonent.
+            </summary>
+        </member>
+        <member name="M:LogiFrame.Components.Component.Dispose">
+            <summary>
+                Releases all resources used by LogiFrame.Components.Comonent.
+            </summary>
+        </member>
+        <member name="M:LogiFrame.Components.Component.Refresh(System.Boolean)">
+            <summary>
+                Refreshes the LogiFrame.Components.Component.Bytemap and renders it if nececcary.
+            </summary>
+            <param name="forceRefresh">
+                Forces the LogiFrame.Components.Component.Bytemap being rerendered even if it hasn't changed
+                when True.
+            </param>
+        </member>
+        <member name="M:LogiFrame.Components.Component.Refresh">
+            <summary>
+                Refreshes the LogiFrame.Components.Component.Bytemap and renders it if nececcary.
+            </summary>
+        </member>
+        <member name="M:LogiFrame.Components.Component.SwapProperty``1(``0@,``0)">
+            <summary>
+                Swaps property with given value.
+            </summary>
+            <param name="field">The value of the field.</param>
+            <param name="value">The value to swap it with.</param>
+            <returns>Whether the field's value has changed.</returns>
+        </member>
+        <member name="M:LogiFrame.Components.Component.SwapProperty``1(``0@,``0,System.Boolean)">
+            <summary>
+                Swaps property with given value.
+            </summary>
+            <param name="field">The value of the field.</param>
+            <param name="value">The value to swap it with.</param>
+            <param name="allowNull">Whether null values are allowed.</param>
+            <returns>Whether the field's value has changed.</returns>
+        </member>
+        <member name="M:LogiFrame.Components.Component.SwapProperty``1(``0@,``0,System.Boolean,System.Boolean)">
+            <summary>
+                Swaps property with given value.
+            </summary>
+            <param name="field">The value of the field.</param>
+            <param name="value">The value to swap it with.</param>
+            <param name="allowNull">Whether null values are allowed.</param>
+            <param name="reportChange">Whether OnChanged should be called if the proporty has been swapped with the value.</param>
+            <returns>Whether the field's value has changed.</returns>
+        </member>
+        <member name="M:LogiFrame.Components.Component.GetParentComponent``1">
+            <summary>
+                Finds the parent LogiFrame.Components.Component of the given type.
+            </summary>
+            <typeparam name="T">Type to find.</typeparam>
+            <returns>The partent LogiFrame.Components.Component of the given type. Returns null if not found.</returns>
+        </member>
+        <member name="M:LogiFrame.Components.Component.OnLocationChanged(System.EventArgs)">
+            <summary>
+                Called when the location has changed.
+            </summary>
+            <param name="e">Contains information about the event.</param>
+        </member>
+        <member name="M:LogiFrame.Components.Component.OnChanged(System.EventArgs)">
+            <summary>
+                Called when the component has changed.
+            </summary>
+            <param name="e">Contains information about the event.</param>
+        </member>
+        <member name="M:LogiFrame.Components.Component.DisposeComponent">
+            <summary>
+                Stub for child components. This overridable method can be used to dispose resources.
+            </summary>
+        </member>
+        <member name="M:LogiFrame.Components.Component.Render">
+            <summary>
+                Renders all grahpics of this LogiFrame.Components.Component.
+            </summary>
+            <returns>The rendered LogiFrame.Bytemap.</returns>
+        </member>
+        <member name="M:LogiFrame.Components.Component.size_Changed(System.Object,System.EventArgs)">
+            <summary>
+                Listens to Size.Changed.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:LogiFrame.Components.Component.location_Changed(System.Object,System.EventArgs)">
+            <summary>
+                Listens to Location.Changed.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="E:LogiFrame.Components.Component.Changed">
+            <summary>
+                Occurs when a property has changed or the LogiFrame.Components.Component needs to be refreshed.
+            </summary>
+        </member>
+        <member name="E:LogiFrame.Components.Component.LocationChanged">
+            <summary>
+                Occurs when the location of the LogiFrame.Components.Component has changed.
+            </summary>
+        </member>
+        <member name="E:LogiFrame.Components.Component.Disposed">
+            <summary>
+                Occurs when this LogiFrame.Components.Component has been disposed.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.Component.Location">
+            <summary>
+                Gets or sets the LogiFrame.Location this LogiFrame.Components.Component should
+                be rendered at within the parrent LogiFrame.Components.Container.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.Component.RenderLocation">
+            <summary>
+                Gets the exact LogiFrame.Location this LogiFrame.Components.Component should
+                be rendered at within the parrent LogiFrame.Components.Container.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.Component.RenderOffset">
+            <summary>
+                Gets or sets the offset from the actual Location this LogiFrame.Components.Component
+                should be rendered at within the parrent LogiFrame.Components.Container.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.Component.Size">
+            <summary>
+                Gets or sets the LogiFrame.Size of this LogiFrame.Components.Component.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.Component.TopEffect">
+            <summary>
+                Gets or sets whether this LogiFrame.Components.Component should have Bytemap.TopEffect enabled when rendered.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.Component.Transparent">
+            <summary>
+                Gets or sets whether this LogiFrame.Components.Component should have Bytemap.Transparent enabled when rendered.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.Component.Visible">
+            <summary>
+                Gets or sets whether this LogiFrame.Components.Component should be visible.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.Component.IsRendering">
+            <summary>
+                Gets or sets(protected) whether this LogiFrame.Component is in the process of rendering itself.
+                When IsRendering is True, the component won't be calling listeners of Changed when properties a refresh is
+                requested.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.Component.Tag">
+            <summary>
+                Gets or sets the object that contains data about the Component.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.Component.IsDisposed">
+            <summary>
+                Gets whether this LogiFrame.Components.Component has been disposed.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.Component.Bytemap">
+            <summary>
+                Gets the rendered LogiFrame.Bytemap of this LogiFrame.Components.Component.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.Component.ParentComponent">
+            <summary>
+                Gets or sets the parent LogiFrame.Components.Component.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.Picture.Image">
+            <summary>
+                Gets or sets the image to be drawn.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.Picture.ConversionMethod">
+            <summary>
+                Gets or sets the conversion method to use during the rendering.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.Picture.AutoSize">
+            <summary>
+                Gets or sets whether this LogiFrame.Components.Picture should automatically
+                resize when the image has changed.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.Picture.Size">
+            <summary>
+                Gets or sets the LogiFrame.Size of this LogiFrame.Components.Label.
+            </summary>
+        </member>
+        <member name="M:LogiFrame.Components.Animation.RenderAnimation">
+            <summary>
+                Renders and stores every individual frame of this LogiFrame.Components.Animation.
+            </summary>
+        </member>
+        <member name="M:LogiFrame.Components.Animation.GetFrameDuration">
+            <summary>
+                Gets the frame duration of the Image from libgdiplus.
+            </summary>
+            <returns>The frame duration from libgdiplus</returns>
+        </member>
+        <member name="P:LogiFrame.Components.Animation.Interval">
+            <summary>
+                Gets or sets the time in miliseconds each frame lasts.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.Animation.AutoInterval">
+            <summary>
+                Gets or sets whether this LogiFrame.Components.Animation should
+                automatically calculate its Interval.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.Animation.Image">
+            <summary>
+                Gets or sets the animated System.Drawing.Image to be rendered.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.Animation.ConversionMethod">
+            <summary>
+                Gets or sets the LogiFrame.ConversionMethod to be used to render the animation.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.Animation.Frame">
+            <summary>
+                Gets or sets the 0-based frame index to be rendered.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.Animation.FrameCount">
+            <summary>
+                Gets the number of frames available in this animation.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.Animation.Run">
+            <summary>
+                Gets or sets whether the animation should automatically cycle trough its frames.
+            </summary>
+        </member>
+        <member name="T:LogiFrame.Components.Book.BookMenu">
+            <summary>
+                Represents a drawable Menu for a LogiFrame.Components.Book.Book.
+            </summary>
+        </member>
+        <member name="T:LogiFrame.Components.Book.Page">
+            <summary>
+                Represents a page which can be used with a LogiFrame.Components.Book.Book.
+            </summary>
+        </member>
+        <member name="T:LogiFrame.Components.Container">
+            <summary>
+                Represents a Component that is capable of holding multiple other LogiFrame.Components.Component instances.
+            </summary>
+        </member>
+        <member name="M:LogiFrame.Components.Container.#ctor">
+            <summary>
+                Initializes a new instance of the LogiFrame.Components.Container class.
+            </summary>
+        </member>
+        <member name="M:LogiFrame.Components.Container.Container_Changed(System.Object,System.EventArgs)">
+            <summary>
+                Listener for Component.Changed.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="P:LogiFrame.Components.Container.Components">
+            <summary>
+                Gets a collection of LogiFrame.Components.Component instances that will be rendered
+                within this LogiFrame.Components.Container.
+            </summary>
+        </member>
+        <member name="M:LogiFrame.Components.Book.Page.#ctor">
+            <summary>
+                Initializes a new instance of the LogiFrame.Components.Book.Page class.
+            </summary>
+        </member>
+        <member name="M:LogiFrame.Components.Book.Page.OnButtonPressed(LogiFrame.ButtonEventArgs)">
+            <summary>
+                Is called when a button has been pressed.
+            </summary>
+            <param name="e">Contains information about the button pressed</param>
+        </member>
+        <member name="M:LogiFrame.Components.Book.Page.OnButtonReleased(LogiFrame.ButtonEventArgs)">
+            <summary>
+                Is called when a button has been released.
+            </summary>
+            <param name="e">Contains information bout the button pressed.</param>
+        </member>
+        <member name="M:LogiFrame.Components.Book.Page.OnShow(System.EventArgs)">
+            <summary>
+                Is called when the page is being showed.
+            </summary>
+            <param name="e">Contains information bout the event.</param>
+        </member>
+        <member name="M:LogiFrame.Components.Book.Page.OnHide(System.EventArgs)">
+            <summary>
+                Is called when the page is being hidden.
+            </summary>
+            <param name="e">Contains information bout the event.</param>
+        </member>
+        <member name="M:LogiFrame.Components.Book.Page.GetPageIcon">
+            <summary>
+                Returns the LogiFrame.Components.Book.PageIcon of this LogiFrame.Components.Book.Page.
+            </summary>
+            <returns>LogiFrame.Components.Book.PageIcon of this LogiFrame.Components.Book.Page.</returns>
+        </member>
+        <member name="M:LogiFrame.Components.Book.Page.GetName">
+            <summary>
+                Return the name of this LogiFrame.Components.Book.Page.
+            </summary>
+            <returns>The name of this LogiFrame.Components.Book.Page.</returns>
+        </member>
+        <member name="M:LogiFrame.Components.Book.Page.IsBrowsable">
+            <summary>
+                Return whether this LogiFrame.Components.Book.Page should be visible in a BookMenu.
+            </summary>
+            <returns>The name of this LogiFrame.Components.Book.Page.</returns>
+        </member>
+        <member name="P:LogiFrame.Components.Book.Page.Location">
+            <summary>
+                Gets the LogiFrame.Location this LogiFrame.Components.Book.Page should
+                be rendered at within the parrent LogiFrame.Components.Container.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.Book.Page.Size">
+            <summary>
+                Gets the LogiFrame.Size of this LogiFrame.Components.Book.Page.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.Book.Page.PageIcon">
+            <summary>
+                Gets the LogiFrame.Components.Book.PageIcon of this LogiFrame.Components.Book.Page.
+            </summary>
+        </member>
+        <member name="M:LogiFrame.Components.Book.BookMenu.#ctor(LogiFrame.Components.Book.Book)">
+            <summary>
+                Initializes a new instance of the LogiFrame.Components.Book.BookMenu class.
+            </summary>
+            <param name="book">The LogiFrame.Components.Book.Book this menu is working for.</param>
+        </member>
+        <member name="P:LogiFrame.Components.Book.BookMenu.Pages">
+            <summary>
+                Gets or sets a Colection of LogiFrame.Components.Book.Page instances the user can browse trough.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.Book.BookMenu.SelectedPage">
+            <summary>
+                Gets or sets the currently selected LogiFrame.Components.Book.Page.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.Book.BookMenu.InitialPage">
+            <summary>
+                Gets or sets the LogiFrame.Components.Book.Page to return to when the return button has been pressed.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.Book.BookMenu.ButtonPrevious">
+            <summary>
+                Gets or sets the button which will select the previous LogiFrame.Components.Book.Page.
+                Set to -1 to disable this functionality.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.Book.BookMenu.ButtonNext">
+            <summary>
+                Gets or sets the button which will select the next LogiFrame.Components.Book.Page.
+                Set to -1 to disable this functionality.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.Book.BookMenu.ButtonSelect">
+            <summary>
+                Gets or sets the button which will switch to the currently selected LogiFrame.Components.Book.Page.
+                Set to -1 to disable this functionality.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.Book.BookMenu.ButtonReturn">
+            <summary>
+                Gets or sets the button which will return to the initial LogiFrame.Components.Book.Page.
+                Set to -1 to disable this functionality.
+            </summary>
+        </member>
+        <member name="T:LogiFrame.Components.Book.Book">
+            <summary>
+                Represents a browsable Component which can contain multiple
+                instances of the LogiFrame.Components.Book.Page class.
+            </summary>
+        </member>
+        <member name="M:LogiFrame.Components.Book.Book.#ctor(LogiFrame.Frame)">
+            <summary>
+                Initializes a new instance of the LogiFrame.Components.Book.Book class.
+            </summary>
+            <param name="frame">The LogiFrame.Frame this LogiFrame.Components.Book.Book should render in.</param>
+        </member>
+        <member name="M:LogiFrame.Components.Book.Book.SwitchTo(LogiFrame.Components.Book.Page)">
+            <summary>
+                Switches to the given LogiFrame.Components.Book.Page.
+            </summary>
+            <param name="page">The LogiFrame.Components.Book.Page to switch to.</param>
+        </member>
+        <member name="M:LogiFrame.Components.Book.Book.SwitchTo(System.Type)">
+            <summary>
+                Switches to the first instance of the given type in Pages.
+            </summary>
+            <param name="pageType">The type of the LogiFrame.Components.Book.Page to switch to.</param>
+        </member>
+        <member name="M:LogiFrame.Components.Book.Book.SwitchTo``1">
+            <summary>
+                Switches to the first instance of the given type in Pages.
+            </summary>
+            <typeparam name="T">The type of the LogiFrame.Components.Book.Page to switch to.</typeparam>
+        </member>
+        <member name="M:LogiFrame.Components.Book.Book.ShowMenu">
+            <summary>
+                Shows the BookMenu.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.Book.Book.ActivePage">
+            <summary>
+                Gets or sets the currently active page of this LogiFrame.Components.Book.Book.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.Book.Book.Pages">
+            <summary>
+                Gets a Collection to add browsable LogiFrame.Components.Book.Page instances to.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.Book.Book.Location">
+            <summary>
+                Gets the LogiFrame.Location this LogiFrame.Components.Book.Book should
+                be rendered at within the parrent LogiFrame.Components.Container.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.Book.Book.Size">
+            <summary>
+                Gets the LogiFrame.Size of this LogiFrame.Components.Book.Book.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.Book.Book.BookMenu">
+            <summary>
+                Gets or sets the LogiFrame.Components.Book.BookMenu this LogiFrame.Components.Book.Book should use.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.Book.Book.MenuButton">
+            <summary>
+                Gets or sets the menu button which opens the BookMenu of this LogiFrame.Components.Book.Book.
+                Set to -1 to disable this functionality.
+            </summary>
+        </member>
+        <member name="T:LogiFrame.Components.Book.PageCollection`1">
+            <summary>
+                Represents a dynamic collection of LogiFrame.Components.Book.Page.
+            </summary>
+            <typeparam name="T">An instance of LogiFrame.Components.Book.Page.</typeparam>
+        </member>
+        <member name="E:LogiFrame.Components.Book.PageCollection`1.PageAdded">
+            <summary>
+                Occurs when a LogiFrame.Components.Book.Page has been added to this collection.
+            </summary>
+        </member>
+        <member name="E:LogiFrame.Components.Book.PageCollection`1.PageRemoved">
+            <summary>
+                Occurs when a LogiFrame.Components.Book.Page has been removed from this collection.
+            </summary>
+        </member>
+        <member name="T:LogiFrame.Components.Book.PageCollection`1.ComponentChangedEventHandler">
+            <summary>
+                Represents the method that handles a LogiFrame.Components.ComponentCollection.ComponentAdded and
+                LogiFrame.Components.ComponentCollection.ComponentRemoved.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">A LogiFrame.ComponentChangedEventArgs that contains the event data.</param>
+        </member>
+        <member name="T:LogiFrame.Components.Book.PageIcon">
+            <summary>
+                Represents a drawable icon of a LogiFrame.Components.Book.Page.
+            </summary>
+        </member>
+        <member name="M:LogiFrame.Components.Book.PageIcon.#ctor">
+            <summary>
+                Initializes a new instance of the LogiFrame.Components.Book.PageIcon class.
+            </summary>
+        </member>
+        <member name="M:LogiFrame.Components.Book.PageIcon.#ctor(System.Collections.Generic.IEnumerable{LogiFrame.Components.Component})">
+            <summary>
+                Initializes a new instance of the LogiFrame.Components.Book.PageIcon class.
+            </summary>
+            <param name="components">Compoents to be added to this container.</param>
+        </member>
+        <member name="P:LogiFrame.Components.Book.PageIcon.Location">
+            <summary>
+                Gets the LogiFrame.Location this LogiFrame.Components.Book.PageIcon should
+                be rendered at within the parrent LogiFrame.Components.Container.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.Book.PageIcon.Size">
+            <summary>
+                Gets the LogiFrame.Size of this LogiFrame.Components.Book.PageIcon.
+            </summary>
+        </member>
+        <member name="T:LogiFrame.Components.ComponentChangedEventArgs">
+            <summary>
+                Provides data for the LogiFrame.Components.ComponentCollection.ComponentAdded and
+                LogiFrame.Components.ComponentCollection.ComponentRemoved event.
+            </summary>
+        </member>
+        <member name="M:LogiFrame.Components.ComponentChangedEventArgs.#ctor(LogiFrame.Components.Component)">
+            <summary>
+                Initilizes a new instance of the LogiFrame.Components.ComponentChangedEventArgs
+            </summary>
+            <param name="component">The component that has been changed.</param>
+        </member>
+        <member name="P:LogiFrame.Components.ComponentChangedEventArgs.Component">
+            <summary>
+                Gets the component which has been changed.
+            </summary>
+        </member>
+        <member name="T:LogiFrame.Components.Circle">
+            <summary>
+                Represents a drawable circle.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.Circle.Fill">
+            <summary>
+                Gets or sets whether the LogiFrame.Components.Square should be filled.
+            </summary>
+        </member>
+        <member name="T:LogiFrame.Components.ComponentCollection`1">
+            <summary>
+                Represents a dynamic collection of LogiFrame.Components.Component.
+            </summary>
+            <typeparam name="T">An instance of LogiFrame.Components.Component</typeparam>
+        </member>
+        <member name="E:LogiFrame.Components.ComponentCollection`1.ComponentAdded">
+            <summary>
+                Occurs when a LogiFrame.Components.Component has been added to this collection.
+            </summary>
+        </member>
+        <member name="E:LogiFrame.Components.ComponentCollection`1.ComponentRemoved">
+            <summary>
+                Occurs when a LogiFrame.Components.Component has been removed from this collection.
+            </summary>
+        </member>
+        <member name="T:LogiFrame.Components.ComponentCollection`1.ComponentChangedEventHandler">
+            <summary>
+                Represents the method that handles a LogiFrame.Components.ComponentCollection.ComponentAdded and
+                LogiFrame.Components.ComponentCollection.ComponentRemoved.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">A LogiFrame.ComponentChangedEventArgs that contains the event data.</param>
+        </member>
+        <member name="T:LogiFrame.Components.Label">
+            <summary>
+                Represents a drawable text label.
+            </summary>
+        </member>
+        <member name="M:LogiFrame.Components.Label.ClearCache">
+            <summary>
+                Clears all cache items from the Label's cache.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.Label.Text">
+            <summary>
+                Gets or sets the text this LogiFrame.Components.Label should draw.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.Label.Font">
+            <summary>
+                Gets or sets the System.Drawing.Font this LogiFrame.Components.Label should draw with.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.Label.AutoSize">
+            <summary>
+                Gets or sets whether this LogiFrame.Components.Label should automatically
+                resize to fit the Text.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.Label.Size">
+            <summary>
+                Gets or sets the LogiFrame.Size of this LogiFrame.Components.Label.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.Label.VerticalAlignment">
+            <summary>
+                Gets or sets the vertical LogiFrame.Component.Alignment of this LogiFrame.Components.Label.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.Label.HorizontalAlignment">
+            <summary>
+                Gets or sets the horizontal LogiFrame.Component.Alignment of this LogiFrame.Components.Label.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.Label.UseCache">
+            <summary>
+                Gets or sets whether the label should cache all rendered texts.
+            </summary>
+        </member>
+        <member name="T:LogiFrame.Components.Line">
+            <summary>
+                Represents a drawable line.
+            </summary>
+        </member>
+        <member name="M:LogiFrame.Components.Line.#ctor">
+            <summary>
+                Initializes a new instance of the LogiFrame.components.Line class.
+            </summary>
+        </member>
+        <member name="M:LogiFrame.Components.Line.end_Changed(System.Object,System.EventArgs)">
+            <summary>
+                Listener for Location.Changed.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:LogiFrame.Components.Line.start_Changed(System.Object,System.EventArgs)">
+            <summary>
+                Listener for Location.Changed.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="P:LogiFrame.Components.Line.Start">
+            <summary>
+                Gets or sets the LogiFrame.Location within the parent LogiFrame.Components.Container where the line should start
+                at.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.Line.End">
+            <summary>
+                Gets or sets the LogiFrame.Location within the parent LogiFrame.Components.Container where the line should end at.
+            </summary>
+        </member>
+        <member name="T:LogiFrame.Components.Marquee">
+            <summary>
+                Represents a scrolling text.
+            </summary>
+        </member>
+        <member name="M:LogiFrame.Components.Marquee.#ctor">
+            <summary>
+                Initializes a new instance of the LogiFrame.Component.Marquee class.
+            </summary>
+        </member>
+        <member name="M:LogiFrame.Components.Marquee.ClearCache">
+            <summary>
+                Clears all items from the Label's cache.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.Marquee.Text">
+            <summary>
+                Gets or sets thetext this LogiFrame.Component.Marquee should draw.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.Marquee.Font">
+            <summary>
+                Gets or sets the System.Drawing.Font this LogiFrame.Component.Marquee should draw with.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.Marquee.UseCache">
+            <summary>
+                Gets or sets whether the label should cache all rendered texts.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.Marquee.Interval">
+            <summary>
+                Gets or sets the time in miliseconds each frame lasts.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.Marquee.Run">
+            <summary>
+                Gets or sets whether the text should move.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.Marquee.Vertical">
+            <summary>
+                Gets or sets whether the text should move vertically. If false, the text moves horizontally
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.Marquee.StepSize">
+            <summary>
+                Gets or sets the number of pixels shifted each interval.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.Marquee.SyncedMarquees">
+            <summary>
+                Gets a list to fill with LogiFrame.Components.Marquee objects whose steps to sync with this
+                LogiFrame.Components.Marquee.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.Marquee.MarqueeStyle">
+            <summary>
+                Gets or sets the LogiFrame.Components.MarqueeStyle to use.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.Marquee.EndSteps">
+            <summary>
+                Gets or sets the amount of steps for the marquee to stop at the preset moments.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.Marquee.Steps">
+            <summary>
+                Gets the amount of steps it takes this LogiFrame.Components.Marquee to rotate.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.Marquee.Step">
+            <summary>
+                Gets or sets the current step of this LogiFrame.Components.Marquee.
+            </summary>
+        </member>
+        <member name="T:LogiFrame.Components.ProgressBar">
+            <summary>
+                Represents a drawable progress bar.
+            </summary>
+        </member>
+        <member name="M:LogiFrame.Components.ProgressBar.#ctor">
+            <summary>
+                Initializes a new instance of the LogiFrame.Components.ProgressBar class.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.ProgressBar.Horizontal">
+            <summary>
+                Gets or sets whether the progress bar is progressing horizontally.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.ProgressBar.Inverted">
+            <summary>
+                Gets or sets whether the progress bar is progressing invertedly.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.ProgressBar.MaximumValue">
+            <summary>
+                Gets or sets the maximum Value this LogiFrame.Components.ProgressBar can have.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.ProgressBar.MinimumValue">
+            <summary>
+                Gets or sets the minimum Value this LogiFrame.Components.ProgressBar can have.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.ProgressBar.Value">
+            <summary>
+                Gets or sets the Value of this LogiFrame.Components.ProgressBar.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.ProgressBar.ProgressBarStyle">
+            <summary>
+                Gets or sets the LogiFrame.Components.ProgressBarStyle of this LogiFrame.Components.ProgressBar.
+            </summary>
+        </member>
+        <member name="T:LogiFrame.Components.ProgressBarStyle">
+            <summary>
+                Represents a Style of drawing a LogiFrame.Components.ProgressBar.
+            </summary>
+        </member>
+        <member name="F:LogiFrame.Components.ProgressBarStyle.NoBorder">
+            <summary>
+                A drawing type where there is no border around the ProgressBar.
+            </summary>
+        </member>
+        <member name="F:LogiFrame.Components.ProgressBarStyle.Border">
+            <summary>
+                A drawing type where there is a border around the ProgressBar.
+            </summary>
+        </member>
+        <member name="F:LogiFrame.Components.ProgressBarStyle.WhiteSpacedBorder">
+            <summary>
+                A drawing type where there is a border around the ProgressBar,
+                and a single pixel of whitespace between the border in the inner bar.
+            </summary>
+        </member>
+        <member name="T:LogiFrame.Components.Rotation">
+            <summary>
+                Represents modifications which can be set to the Rotation property of LogiFrame.Components.Rotator.
+            </summary>
+        </member>
+        <member name="F:LogiFrame.Components.Rotation.Rotate0Degrees">
+            <summary>
+                Rotates the container 0 degrees.
+            </summary>
+        </member>
+        <member name="F:LogiFrame.Components.Rotation.Rotate90Degrees">
+            <summary>
+                Rotates the container 90 degrees.
+            </summary>
+        </member>
+        <member name="F:LogiFrame.Components.Rotation.Rotate180Degrees">
+            <summary>
+                Rotates the container 180 degrees.
+            </summary>
+        </member>
+        <member name="F:LogiFrame.Components.Rotation.Rotate270Degrees">
+            <summary>
+                Rotates the container 270 degrees.
+            </summary>
+        </member>
+        <member name="F:LogiFrame.Components.Rotation.FlipHorizontal">
+            <summary>
+                Flips the container horizontally.
+            </summary>
+        </member>
+        <member name="F:LogiFrame.Components.Rotation.FlipVertical">
+            <summary>
+                Flips the container vertically.
+            </summary>
+        </member>
+        <member name="T:LogiFrame.Components.Rotator">
+            <summary>
+                Represents a LogiFrame.Components.Container which can be rotated.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.Rotator.Rotation">
+            <summary>
+                Gets or sets the LogiFrame.Components.Rotation of this LogiFrame.Components.Rotator.
+            </summary>
+        </member>
+        <member name="T:LogiFrame.Components.ScrollBar">
+            <summary>
+                Represents a drawable scroll bar.
+            </summary>
+        </member>
+        <member name="M:LogiFrame.Components.ScrollBar.#ctor">
+            <summary>
+                Initializes a new instance of the LogiFrame.Components.ScrollBar class.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.ScrollBar.Horizontal">
+            <summary>
+                Gets or sets whether the scroll bar is progressing horizontally.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.ScrollBar.MaximumValue">
+            <summary>
+                Gets or sets the maximum Value this LogiFrame.Components.ScrollBar can have.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.ScrollBar.Value">
+            <summary>
+                Gets or sets the Value of this LogiFrame.Components.ScrollBar.
+            </summary>
+        </member>
+        <member name="T:LogiFrame.Components.Square">
+            <summary>
+                Represents a drawable square.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.Square.Fill">
+            <summary>
+                Gets or sets whether the LogiFrame.Components.Square should be filled.
+            </summary>
+        </member>
+        <member name="T:LogiFrame.Components.Timer">
+            <summary>
+                Represents a ticking timer.
+            </summary>
+        </member>
+        <member name="M:LogiFrame.Components.Timer.OnTick(System.EventArgs)">
+            <summary>
+                Called when the timer ticks.
+            </summary>
+            <param name="e">Contains information about the event.</param>
+        </member>
+        <member name="E:LogiFrame.Components.Timer.Tick">
+            <summary>
+                Occurs when the Invetval of the current LogiFrame.Components.Timer elapsed whilst running.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.Timer.Interval">
+            <summary>
+                Gets or sets the time in miliseconds each frame lasts.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Components.Timer.Enabled">
+            <summary>
+                Gets or sets whether the timer is enabled.
+            </summary>
+        </member>
+        <member name="T:LogiFrame.ConnectionException">
+            <summary>
+                Represents errors that occur during a connection with LCDmon.
+            </summary>
+        </member>
+        <member name="M:LogiFrame.ConnectionException.#ctor(System.String)">
+            <summary>
+                Initializes a new instance of the LogiFrame.ConnectionException class with a specified
+                error message.
+            </summary>
+            <param name="message">The message that describes the error.</param>
+        </member>
+        <member name="T:LogiFrame.ConversionMethod">
+            <summary>
+                Represents the technique used for transforming a System.Drawing.Bitmap
+                into a LogiFrame.Bytemap.
+            </summary>
+        </member>
+        <member name="F:LogiFrame.ConversionMethod.Normal">
+            <summary>
+                Represents the default conversion type.
+            </summary>
+        </member>
+        <member name="F:LogiFrame.ConversionMethod.QuarterByte">
+            <summary>
+                Represents a conversion where pixels with RGR values of 0-64 and A value of 255 are filled.
+            </summary>
+        </member>
+        <member name="F:LogiFrame.ConversionMethod.NonWhite">
+            <summary>
+                Represents a conversion where pixels with RGR values of 0-254 and A value of 255 are filled.
+            </summary>
+        </member>
+        <member name="M:LogiFrame.ConversionMethod.#ctor(System.Byte,System.Byte,System.Byte,System.Byte)">
+            <summary>
+                Initializes a new instance of the LogiFrame.ConversionMethod structure.
+            </summary>
+            <param name="maxRed">The maximum red color value for a pixel to be filled.</param>
+            <param name="maxGreen">The maximum green color value for a pixel to be filled.</param>
+            <param name="maxBlue">The maximum blue color value for a pixel to be filled.</param>
+            <param name="minAlpha">The minimum alpha color value for a pixel to be filled.</param>
+        </member>
+        <member name="M:LogiFrame.ConversionMethod.Equals(System.Object)">
+            <summary>
+                Determines whether the specified System.Object is equal to this LogiFrame.ConversionMethod.
+            </summary>
+            <param name="obj">The System.Object to compare with this LogiFrame.ConversionMethod.</param>
+            <returns>
+                true if the specified System.Object is equal to this LogiFrame.ConversionMethod;
+                otherwise, false.
+            </returns>
+        </member>
+        <member name="M:LogiFrame.ConversionMethod.GetHashCode">
+            <summary>
+                Returns a hash code for this LogiFrame.ConversionMethod.
+            </summary>
+            <returns>An integer value that specifies a hash value for this LogiFrame.ConversionMethod.</returns>
+        </member>
+        <member name="P:LogiFrame.ConversionMethod.MaxRed">
+            <summary>
+                Gets or sets the maximum red color value for a pixel to be filled.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.ConversionMethod.MaxGreen">
+            <summary>
+                Gets or sets the maximum green color value for a pixel to be filled.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.ConversionMethod.MaxBlue">
+            <summary>
+                Gets or sets the maximum blue color value for a pixel to be filled.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.ConversionMethod.MinAlpha">
+            <summary>
+                Gets or sets the minimum alpha color value for a pixel to be filled.
+            </summary>
+        </member>
+        <member name="T:LogiFrame.PushingEventArgs">
+            <summary>
+                Provides data for the LogiFrame.Frame.Pushing event.
+            </summary>
+        </member>
+        <member name="M:LogiFrame.PushingEventArgs.#ctor(LogiFrame.Bytemap)">
+            <summary>
+                Initializes a new instance of the LogiFrame.PushingEventArgs class.
+            </summary>
+            <param name="frame">The frame that is about to be pushed.</param>
+        </member>
+        <member name="P:LogiFrame.PushingEventArgs.PreventPush">
+            <summary>
+                Gets or sets whether this frame should be prevented from being
+                pushed to the display.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.PushingEventArgs.Frame">
+            <summary>
+                Gets the frame that is about to be
+            </summary>
+        </member>
+        <member name="T:LogiFrame.SimpleExpandableObjectConverter">
+            <summary>
+                Provides a type converter to convert various objects to and from various other representations.
+            </summary>
+        </member>
+        <member name="M:LogiFrame.SimpleExpandableObjectConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)">
+            <summary>
+                Converts the given value object to the specified type, using the specified context and culture information.
+            </summary>
+            <returns>
+                An <see cref="T:System.Object" /> that represents the converted value.
+            </returns>
+            <param name="context">An <see cref="T:System.ComponentModel.ITypeDescriptorContext" /> that provides a format context. </param>
+            <param name="culture">
+                A <see cref="T:System.Globalization.CultureInfo" />. If null is passed, the current culture is
+                assumed.
+            </param>
+            <param name="value">The <see cref="T:System.Object" /> to convert. </param>
+            <param name="destinationType">The <see cref="T:System.Type" /> to convert the <paramref name="value" /> parameter to. </param>
+            <exception cref="T:System.ArgumentNullException">The <paramref name="destinationType" /> parameter is null. </exception>
+            <exception cref="T:System.NotSupportedException">The conversion cannot be performed. </exception>
+        </member>
+        <member name="F:LogiFrame.Simulation.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:LogiFrame.Simulation.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:LogiFrame.Simulation.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:LogiFrame.Size">
+            <summary>
+                Represents the size of a component.
+            </summary>
+        </member>
+        <member name="M:LogiFrame.Size.#ctor">
+            <summary>
+                Initializes a new instance of the LogiFrame.Location class.
+            </summary>
+        </member>
+        <member name="M:LogiFrame.Size.#ctor(LogiFrame.Size)">
+            <summary>
+                Initializes a new instance of the LogiFrame.Location class.
+            </summary>
+            <param name="parent">An instance of LogiFrame.Size to copy the dimentions from.</param>
+        </member>
+        <member name="M:LogiFrame.Size.#ctor(System.Int32,System.Int32)">
+            <summary>
+                Initializes a new instance of the LogiFrame.Location class.
+            </summary>
+            <param name="width">The initial width.</param>
+            <param name="height">The initial height.</param>
+        </member>
+        <member name="M:LogiFrame.Size.Add(System.Int32,System.Int32)">
+            <summary>
+                Adds a certain value to this LogiFrame.Size instance.
+            </summary>
+            <param name="width">Value to add to the width.</param>
+            <param name="height">Value to add to the height</param>
+        </member>
+        <member name="M:LogiFrame.Size.Add(LogiFrame.Size)">
+            <summary>
+                Adds a certain value to this LogiFrame.Size instance.
+            </summary>
+            <param name="other">Value to add to the width and height.</param>
+        </member>
+        <member name="M:LogiFrame.Size.Set(System.Int32,System.Int32)">
+            <summary>
+                Set a certain value to this LogiFrame.Size instance.
+            </summary>
+            <param name="width">The new width value.</param>
+            <param name="height">The new height value.</param>
+        </member>
+        <member name="M:LogiFrame.Size.Set(LogiFrame.Size)">
+            <summary>
+                Set a certain value to this LogiFrame.Size instance.
+            </summary>
+            <param name="other">An instance of LogiFrame.Size to copy the dimensions from.</param>
+        </member>
+        <member name="M:LogiFrame.Size.op_Subtraction(LogiFrame.Size,LogiFrame.Size)">
+            <summary>
+                Translates a LogiFrame.Size by a given LogiFrame.Size.
+            </summary>
+            <param name="size1">The LogiFrame.Size to translate.</param>
+            <param name="size2">
+                A LogiFrame.Size that specifies the pair of numbers to add to
+                the coordinates of size1.
+            </param>
+            <returns>
+                A LogiFrame.Size instance that is translated by the other
+                given LogiFrame.Size instance.
+            </returns>
+        </member>
+        <member name="M:LogiFrame.Size.op_Addition(LogiFrame.Size,LogiFrame.Size)">
+            <summary>
+                Translates a LogiFrame.Size by the  of a given LogiFrame.Size.
+            </summary>
+            <param name="size1">The LogiFrame.Size to translate.</param>
+            <param name="size2">
+                A LogiFrame.Size that specifies the pair of numbers to subtract from
+                the coordinates of loc1.
+            </param>
+            <returns>
+                A LogiFrame.Size instance that is translated by the negative of the
+                other given LogiFrame.Size instance.
+            </returns>
+        </member>
+        <member name="M:LogiFrame.Size.op_Implicit(LogiFrame.Size)~System.Drawing.Size">
+            <summary>
+                Converts the specified LogiFrame.Size instance to a System.Drawing.Size struct.
+            </summary>
+            <param name="size">The LogiFrame.Size to be converted.</param>
+            <returns>The System.Drawing.Size that results from the conversion.</returns>
+        </member>
+        <member name="M:LogiFrame.Size.op_Implicit(System.Drawing.Size)~LogiFrame.Size">
+            <summary>
+                Converts the specified System.Drawing.Size struct to a LogiFrame.Size instance.
+            </summary>
+            <param name="size">The System.Drawing.Size to be converted.</param>
+            <returns>The LogiFrame.Size that results from the conversion.</returns>
+        </member>
+        <member name="M:LogiFrame.Size.GetHashCode">
+            <summary>
+                Returns a hash code for this LogiFrame.Size.
+            </summary>
+            <returns>An integer value that specifies a hash value for this LogiFrame.Size.</returns>
+        </member>
+        <member name="M:LogiFrame.Size.ToString">
+            <summary>
+                Converts this LogiFrame.Size to a human-readable string.
+            </summary>
+            <returns>A string that represents this LogiFrame.Size.</returns>
+        </member>
+        <member name="E:LogiFrame.Size.Changed">
+            <summary>
+                Occurs when the Size has been changed.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Size.Width">
+            <summary>
+                Gets or sets the width of the LogiFrame.Size.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Size.Height">
+            <summary>
+                Gets or sets the height of the LogiFrame.Size.
+            </summary>
+        </member>
+        <member name="T:LogiFrame.Frame">
+            <summary>
+                Represents the framework.
+            </summary>
+        </member>
+        <member name="M:LogiFrame.Frame.#ctor(System.String)">
+            <summary>
+                Initializes a new instance of the LogiFrame.Frame class.
+            </summary>
+            <param name="applicationName">A string that contains the 'friendly name' of the application.</param>
+        </member>
+        <member name="M:LogiFrame.Frame.#ctor(System.String,System.Boolean)">
+            <summary>
+                Initializes a new instance of the LogiFrame.Frame class.
+            </summary>
+            <param name="applicationName">A string that contains the 'friendly name' of the application.</param>
+            <param name="isAutostartable"> Whether true application can be started by LCDMon or not.</param>
+        </member>
+        <member name="M:LogiFrame.Frame.#ctor(System.String,System.Boolean,System.Boolean)">
+            <summary>
+                Initializes a new instance of the LogiFrame.Frame class.
+            </summary>
+            <param name="applicationName">A string that contains the 'friendly name' of the application.</param>
+            <param name="isAutostartable"> Whether true application can be started by LCDMon or not.</param>
+            <param name="isPersistent">Whether connection is regular.</param>
+        </member>
+        <member name="M:LogiFrame.Frame.#ctor(System.String,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+                Initializes a new instance of the LogiFrame.Frame class.
+            </summary>
+            <param name="applicationName">A string that contains the 'friendly name' of the application.</param>
+            <param name="isAutostartable"> Whether true application can be started by LCDMon or not.</param>
+            <param name="isPersistent">Whether connection is regular.</param>
+            <param name="allowConfiguration">Whether the application is configurable via LCDmon.</param>
+        </member>
+        <member name="M:LogiFrame.Frame.#ctor(System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+                Initializes a new instance of the LogiFrame.Frame class.
+            </summary>
+            <param name="applicationName">A string that contains the 'friendly name' of the application.</param>
+            <param name="isAutostartable"> Whether true application can be started by LCDMon or not.</param>
+            <param name="isPersistent">Whether connection is regular.</param>
+            <param name="allowConfiguration">Whether the application is configurable via LCDmon.</param>
+            <param name="simulate">Whether LogiFrame should start in simulation mode.</param>
+        </member>
+        <member name="M:LogiFrame.Frame.Finalize">
+            <summary>
+                Releases all resources used by LogiFrame.Frame
+            </summary>
+        </member>
+        <member name="M:LogiFrame.Frame.Dispose">
+            <summary>
+                Releases all resources used by LogiFrame.Frame
+            </summary>
+        </member>
+        <member name="M:LogiFrame.Frame.WaitForClose">
+            <summary>
+                Waits untill the LogiFrame.Frame was disposed.
+            </summary>
+        </member>
+        <member name="M:LogiFrame.Frame.OnButtonDown(LogiFrame.ButtonEventArgs)">
+            <summary>
+                Called when a button has been released.
+            </summary>
+            <param name="e">Contains information about the event.</param>
+        </member>
+        <member name="M:LogiFrame.Frame.OnButtonUp(LogiFrame.ButtonEventArgs)">
+            <summary>
+                Called when a button has been pressed.
+            </summary>
+            <param name="e">Contains information about the event.</param>
+        </member>
+        <member name="M:LogiFrame.Frame.OnPushing(LogiFrame.PushingEventArgs)">
+            <summary>
+                Called when a frame is being pushed.
+            </summary>
+            <param name="e">Contains information about the event.</param>
+        </member>
+        <member name="M:LogiFrame.Frame.OnFrameClosed(System.EventArgs)">
+            <summary>
+                Called when the frame is being closed.
+            </summary>
+            <param name="e">Contains information about the event.</param>
+        </member>
+        <member name="M:LogiFrame.Frame.OnConfigure(System.EventArgs)">
+            <summary>
+                Called when the configuration button had been pressed.
+            </summary>
+            <param name="e">Contains information about the event.</param>
+        </member>
+        <member name="M:LogiFrame.Frame.PerformButtonDown(System.Int32)">
+            <summary>
+                Emulates a button being pushed.
+            </summary>
+        </member>
+        <member name="M:LogiFrame.Frame.PerformButtonUp(System.Int32)">
+            <summary>
+                Emulates a button being released.
+            </summary>
+        </member>
+        <member name="M:LogiFrame.Frame.UpdateScreen(LogiFrame.Bytemap)">
+            <summary>
+                Pushes the given <paramref name="bytemap" /> to the display.
+            </summary>
+            <param name="bytemap">The LogiFrame.Bytemap to push.</param>
+        </member>
+        <member name="E:LogiFrame.Frame.ButtonDown">
+            <summary>
+                Occurs when a button is being pressed.
+            </summary>
+        </member>
+        <member name="E:LogiFrame.Frame.ButtonUp">
+            <summary>
+                Occurs when a button is being released.
+            </summary>
+        </member>
+        <member name="E:LogiFrame.Frame.Pushing">
+            <summary>
+                Occurs before a frame is being pushed to the display.
+            </summary>
+        </member>
+        <member name="E:LogiFrame.Frame.FrameClosed">
+            <summary>
+                Occurs after the frame has been closed or disposed
+            </summary>
+        </member>
+        <member name="E:LogiFrame.Frame.Configure">
+            <summary>
+                Occurs when the 'configure' button has been pressed in LCDmon.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Frame.LCDSize">
+            <summary>
+                Gets the LogiFrame.Size of an LCD screen.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Frame.ApplicationName">
+            <summary>
+                Gets a string that contains the 'friendly name' of the application.
+                This name is presented to the user whenever a list of applications is shown.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Frame.IsAutostartable">
+            <summary>
+                Gets whether application can be started by LCDMon or not.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Frame.IsPersistent">
+            <summary>
+                Gets whether connection is temporary or whether it is
+                a regular connection that should be added to the list.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Frame.AllowConfiguration">
+            <summary>
+                Gets whether the 'configure' option is being shown in LCDmon.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Frame.Simulate">
+            <summary>
+                Gets whether LogiFrame.Frame is simulating the LCD display on-screen.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Frame.UpdatePriority">
+            <summary>
+                Gets or sets the priority for the forthcoming LCD updates.
+            </summary>
+        </member>
+        <member name="T:LogiFrame.Frame.ButtonEventHandler">
+            <summary>
+                Represents the method that handles LogiFrame.Frame.ButtonDown
+                and LogiFrame.Frame.Buttonup.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">A LogiFrame.ButtonEventArgs that contains the event data.</param>
+        </member>
+        <member name="T:LogiFrame.Frame.PushingEventHandler">
+            <summary>
+                Represents the method that handles a LogiFrame.Frame.FramePush.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">A LogiFrame.PushingEventArgs that contains the event data.</param>
+        </member>
+        <member name="T:LogiFrame.LgLcd">
+            <summary>
+                Logitech LCD class. This class simply exposes the constants
+                and functions provided by the logitech sdk.  No wrapping is done
+                to ease any of this as the goal of this class is to simply reflect
+                exactly what is done in the C API provided by logitech.
+            </summary>
+        </member>
+        <member name="F:LogiFrame.LgLcd.LglcdInvalidConnection">
+            <summary>
+                Invalid connection constant
+            </summary>
+        </member>
+        <member name="F:LogiFrame.LgLcd.LglcdInvalidDevice">
+            <summary>
+                Invalid Device constant
+            </summary>
+        </member>
+        <member name="F:LogiFrame.LgLcd.LglcdbuttonButton0">
+            <summary>
+                Button mask for button 0 (first from left)
+            </summary>
+        </member>
+        <member name="F:LogiFrame.LgLcd.LglcdbuttonButton1">
+            <summary>
+                Button mask for button 1 (second from left)
+            </summary>
+        </member>
+        <member name="F:LogiFrame.LgLcd.LglcdbuttonButton2">
+            <summary>
+                Button mask for button 2 (third from left)
+            </summary>
+        </member>
+        <member name="F:LogiFrame.LgLcd.LglcdbuttonButton3">
+            <summary>
+                Button mask for button 3 (fourth from left)
+            </summary>
+        </member>
+        <member name="F:LogiFrame.LgLcd.LglcdBmpFormat160X43X1">
+            <summary>
+                Constant for G15 display resolution (160x43x1)
+            </summary>
+        </member>
+        <member name="F:LogiFrame.LgLcd.LglcdBmpWidth">
+            <summary>
+                Constant for G15 display width
+            </summary>
+        </member>
+        <member name="F:LogiFrame.LgLcd.LglcdBmpHeight">
+            <summary>
+                Constant for G15 display height
+            </summary>
+        </member>
+        <member name="F:LogiFrame.LgLcd.LglcdPriorityIdleNoShow">
+            <summary>
+                Lowest priority, disable displaying. Use this priority when you don't have
+                anything to show.
+            </summary>
+        </member>
+        <member name="F:LogiFrame.LgLcd.LglcdPriorityBackground">
+            <summary>
+                Priority used for low priority items.
+            </summary>
+        </member>
+        <member name="F:LogiFrame.LgLcd.LglcdPriorityNormal">
+            <summary>
+                Normal priority, to be used by most applications most of the time.
+            </summary>
+        </member>
+        <member name="F:LogiFrame.LgLcd.LglcdPriorityAlert">
+            <summary>
+                Highest priority. To be used only for critical screens, such as 'your CPU
+                temperature is too high'
+            </summary>
+        </member>
+        <member name="M:LogiFrame.LgLcd.LglcdSyncUpdate(System.UInt32)">
+            <summary>
+            </summary>
+            <param name="priority"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LogiFrame.LgLcd.LgLcdASyncUpdate(System.UInt32)">
+            <summary>
+            </summary>
+            <param name="priority"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LogiFrame.LgLcd.lgLcdInit">
+            <summary>
+                The lgLcdInit() function initializes the Logitech LCD library. You must call this
+                function prior to any other function of the library.
+            </summary>
+            <remarks>
+                No other function in the library can be called before lgLcdInit() is executed.
+                For result codes RPC_S_SERVER_UNAVAILABLE, ERROR_OLD_WIN_VERSION, and
+                ERROR_NO_SYSTEM_RESOURCES, the calling application can safely assume
+                that the machine it is running on is not set up to do LCD output and therefore
+                disable its LCD-related functionality.
+            </remarks>
+            <returns>
+                If the function succeeds, the return value is ERROR_SUCCESS.
+                If the function fails, the return value can be one of the following:
+                RPC_S_SERVER_UNAVAILABLE
+                The Logitech LCD subsystem is not available (this is the case for systems that
+                don't have the software installed)
+                ERROR_OLD_WIN_VERSION
+                Attempted to initialize for Windows 9x. The library only works on Windows 2000
+                and above.
+                ERROR_NO_SYSTEM_RESOURCES
+                Not enough system resources.
+                ERROR_ALREADY_INITIALIZED
+                lgLcdInit() has been called before.
+            </returns>
+        </member>
+        <member name="M:LogiFrame.LgLcd.lgLcdDeInit">
+            <summary>
+                Use lgLcdDeInit() after you are done using the library in order to release all resources
+                that were allocated during lgLcdInit().
+            </summary>
+            <remarks>
+                All resources that were allocated during use of the library will be released when
+                this function is called. After this function has been called, no further calls to
+                the library are permitted with the exception of lgLcdInit().
+            </remarks>
+            <returns>
+                If the function succeeds, the return value is ERROR_SUCCESS.
+                This function does not fail.
+            </returns>
+        </member>
+        <member name="M:LogiFrame.LgLcd.lgLcdConnect(LogiFrame.LgLcd.LgLcdConnectContext@)">
+            <summary>
+                Use lgLcdConnect() to establish a connection to the LCD monitor process. This
+                connection is required for any other function to find, open and communicate with LCDs.
+            </summary>
+            <remarks>
+                A connection needs to be established for an application to start using LCD
+                devices. lgLcdConnect() attempts to establish that connection. If the LCD
+                Monitor process is not running (either because it has not been started or not
+                installed (the user is using a different keyboard)), the connection attempt
+                will not succeed. In that case, your application should consider running without
+                any LCD support.
+                Since a string is part of the connection context, this function exists in an ANSI
+                and a UNICODE version. The header file picks the appropriate version depending on
+                whether the symbol UNICODE is present or not.
+            </remarks>
+            <param name="ctx">
+                Pointer to a structure which holds all the relevant information about the connection
+                which you wish to establish. Upon calling, all fields except the 'connection' member
+                need to be filled in; on return from the function, the 'connection' member will be set.
+                See lgLcdConnectContext for details.
+            </param>
+            <returns>
+                If the function succeeds, the return value is ERROR_SUCCESS.
+                If the function fails, the return value can be one of the following:
+                ERROR_SERVICE_NOT_ACTIVE
+                lgLcdInit() has not been called yet.
+                ERROR_INVALID_PARAMETER
+                Either ctx or ctx->AppFriendlyName are NULL.
+                ERROR_FILE_NOT_FOUND
+                LCDMon is not running on the system.
+                ERROR_ALREADY_EXISTS
+                The same client is already connected.
+                RPC_X_WRONG_PIPE_VERSION
+                LCDMon does not understand the protocol.
+                Xxx
+                Other (system) error with appropriate error code.
+            </returns>
+        </member>
+        <member name="M:LogiFrame.LgLcd.lgLcdDisconnect(System.Int32)">
+            <summary>
+                Use lgLcdDisconnect() to close an existing connection to the LCD monitor process.
+            </summary>
+            <remarks>
+                Closing a connection invalidates all devices that have been opened using that connection.
+                These invalid handles, if used after closing the connection, will cause errors to be
+                returned by calls to lgLcdUpdateBitmap(), lgLcdReadSoftButtons(), and lgLcdClose().
+                Additionally, if a callback for configuration had been registered in the call to
+                lgLcdConnect(), it will not be called anymore.
+            </remarks>
+            <param name="connection">
+                Specifies the connection handle that was returned from a previous successful call
+                to lgLcdConnect()
+            </param>
+            <returns>
+                If the function succeeds, the return value is ERROR_SUCCESS.
+                If the function fails, the return value can be one of the following:
+                ERROR_SERVICE_NOT_ACTIVE
+                lgLcdInit() has not been called yet.
+                ERROR_INVALID_PARAMETER
+                Specified connection handle does not exist.
+                Xxx
+                Other (system) error with appropriate error code.
+            </returns>
+        </member>
+        <member name="M:LogiFrame.LgLcd.lgLcdEnumerate(System.Int32,System.Int32,LogiFrame.LgLcd.LgLcdDeviceDesc@)">
+            <summary>
+                The lgLcdEnumerate() function is used to retrieve information about all the
+                currently attached and supported Logitech LCD devices.
+            </summary>
+            <remarks>
+                The connection parameter is returned by a call to lgLcdConnect().
+                To enumerate the attached devices, you should call lgLcdEnumerate() and
+                pass in 0 as index parameter. On subsequent calls, increase the index
+                parameter by 1 until the function returns ERROR_NO_MORE_ITEMS.
+            </remarks>
+            <param name="connection">Specifies the connection that this enumeration refers to.</param>
+            <param name="index">Specifies which Device information is requested. See Remarks.</param>
+            <param name="description">
+                Points to an lgLcdDeviceDesc structure which will be filled with information about the
+                Device.
+            </param>
+            <returns>
+                If the function succeeds, the return value is ERROR_SUCCESS.
+                If the function fails, the return value can be one of the following:
+                ERROR_SERVICE_NOT_ACTIVE
+                lgLcdInit() has not been called yet.
+                ERROR_NO_MORE_ITEMS
+                There are no more devices to be enumerated. If this error is returned on the first
+                call, then there are no devices attached.
+                ERROR_INVALID_PARAMETER
+                The description pointer is NULL.
+                Xxx
+                Other (system) error with appropriate error code.
+            </returns>
+        </member>
+        <member name="M:LogiFrame.LgLcd.lgLcdOpen(LogiFrame.LgLcd.LgLcdOpenContext@)">
+            <summary>
+                The lgLcdOpen() function starts the communication with an attached Device. You have
+                to call this function before retrieving button information or updating LCD bitmaps.
+            </summary>
+            <remarks>
+                A handle retrieved through this function stays valid until either of the following conditions occurs:
+                <list type="unordered">
+                    <item>
+                        The Device has been unplugged. Any operation with the given handle will result in an
+                        error code of ERROR_DEVICE_NOT_CONNECTED.
+                    </item>
+                    <item>
+                        The handle has been closed using lgLcdClose().
+                    </item>
+                </list>
+                Part of the opening context is a callback that can be pointed to a function that is to
+                be called when soft button changes take place on the LCD. This callback is issued when
+                the LCD's soft buttons change while your application owns the LCD space. See the
+                definition of lgLcdOpenContext and lgLcdSoftbuttonsChangedContext for details.
+            </remarks>
+            <param name="ctx">
+                Specifies a pointer to a structure with all the information that is needed to open
+                the Device. See lgLcdOpenContext for details. Before calling lgLcdOpen(), all fields
+                must be set, except the 'Device' member. Upon successful return, the 'Device' member
+                contains the Device handle that can be used in subsequent calls to lgLcdUpdateBitmap(),
+                lgLcdReadSoftButtons(), and lgLcdClose().
+            </param>
+            <returns>
+                If the function succeeds, the return value is ERROR_SUCCESS.
+                If the function fails, the return value can be one of the following:
+                ERROR_SERVICE_NOT_ACTIVE
+                lgLcdInit() has not been called yet.
+                ERROR_INVALID_PARAMETER
+                Either ctx is NULL, or ctx->connection is not valid, or ctx->index does not hold a valid Device.
+                ERROR_ALREADY_EXISTS
+                The specified Device has already been opened in the given connection.
+                Xxx
+                Other (system) error with appropriate error code.
+            </returns>
+        </member>
+        <member name="M:LogiFrame.LgLcd.lgLcdClose(System.Int32)">
+            <summary>
+                The lgLcdClose() function stops the communication with the previously opened Device.
+            </summary>
+            <remarks>
+                After calling lgLcdClose, the soft button callback specified in the call to lgLcdOpen()
+                will not be called anymore.
+            </remarks>
+            <param name="device">
+                Specifies the Device handle retrieved in the lgLcdOpenContext by a previous call to lgLcdOpen().
+            </param>
+            <returns>
+                If the function succeeds, the return value is ERROR_SUCCESS.
+                If the function fails, the return value can be one of the following:
+                ERROR_SERVICE_NOT_ACTIVE
+                lgLcdInit() has not been called yet.
+                ERROR_INVALID_PARAMETER
+                The specified Device handle is invalid.
+                Xxx
+                Other (system) error with appropriate error code.
+            </returns>
+        </member>
+        <member name="M:LogiFrame.LgLcd.lgLcdReadSoftButtons(System.Int32,System.Int32@)">
+            <summary>
+                The lgLcdReadSoftButtons() function reads the current state of the soft buttons
+                for the specified Device.
+            </summary>
+            <remarks>
+                The resulting DWORD contains the current state of the soft buttons, 1 bit per
+                button. You can use the mask definitions LGLCDBUTTON_BUTTON0 through
+                LGLCDBUTTON_BUTTON3 to check for any particular button in the DWORD.
+                If your application is not being currently displayed, you will receive a
+                resulting 'buttons' DWORD of 0, even if some soft buttons are being pressed.
+                This is in order to avoid users inadvertently interacting with an application that
+                does not presently show on the display.
+            </remarks>
+            <param name="device">Specifies the Device handle for which to read the soft button state.</param>
+            <param name="buttons">
+                Specifies a pointer to a DWORD that receives the state of the soft buttons at the
+                time of the call. See comments for details.
+            </param>
+            <returns>
+                If the function succeeds, the return value is ERROR_SUCCESS.
+                If the function fails, the return value can be one of the following:
+                ERROR_SERVICE_NOT_ACTIVE
+                lgLcdInit() has not been called yet.
+                ERROR_INVALID_PARAMETER
+                The specified Device handle or the result pointer is invalid.
+                ERROR_DEVICE_NOT_CONNECTED
+                The specified Device has been disconnected.
+                Xxx
+                Other (system) error with appropriate error code.
+            </returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:LogiFrame.LgLcd.lgLcdUpdateBitmap(System.Int32,LogiFrame.LgLcd.LgLcdBitmap160X43X1@,System.UInt32)" -->
+        <member name="T:LogiFrame.LgLcd.lgLcdOnConfigureCB">
+            <summary>
+                Function that should be called when the user wants to configure your
+                application. If no configuration panel is provided or needed,
+                leave this parameter NULL.
+            </summary>
+            <param name="connection">Current connection</param>
+            <param name="pContext">Current context</param>
+            <returns></returns>
+        </member>
+        <member name="T:LogiFrame.LgLcd.lgLcdOnSoftButtonsCB">
+            <summary>
+                Function that should be called when the state of the soft buttons changes.
+                If no notification is needed, leave this parameter NULL.
+            </summary>
+            <param name="device">Device sending buttons</param>
+            <param name="dwButtons">Mask showing which buttons were pressed</param>
+            <param name="pContext">Current context</param>
+            <returns></returns>
+        </member>
+        <member name="T:LogiFrame.LgLcd.LgLcdBitmap160X43X1">
+            <summary>
+                160x43x1 bitmap.  This includes a header and an array
+                of bytes (1 for each pixel.)
+            </summary>
+        </member>
+        <member name="F:LogiFrame.LgLcd.LgLcdBitmap160X43X1.hdr">
+            <summary>
+                Header information telling what kind of bitmap this structure
+                represents (currently only one format exists, see lgLcdBitmapHeader.)
+            </summary>
+        </member>
+        <member name="F:LogiFrame.LgLcd.LgLcdBitmap160X43X1.pixels">
+            <summary>
+                Contains the display bitmap with 160x43 pixels. Every byte represents
+                one pixel, with &gt;=128 being 'on' and &lt;128 being 'off'.
+            </summary>
+        </member>
+        <member name="T:LogiFrame.LgLcd.LgLcdBitmapHeader">
+            <summary>
+                The lgLcdBitmapHeader exists at the beginning of any bitmap structure
+                defined in lgLcd. Following the header is the actual bitmap as an array
+                of bytes, as illustrated by lgLcdBitmap160x43x1.
+            </summary>
+        </member>
+        <member name="F:LogiFrame.LgLcd.LgLcdBitmapHeader.Format">
+            <summary>
+                Specifies the format of the structure following the header.
+                Currently, only LGLCD_BMP_FORMAT_160x43x1 is supported
+            </summary>
+        </member>
+        <member name="T:LogiFrame.LgLcd.LgLcdConfigureContext">
+            <summary>
+                The lgLcdConfigureContext is part of the lgLcdConnectContext and
+                is used to give the library enough information to allow the user
+                to configure your application. The registered callback is called when the user
+                clicks the 'Configure'' button in the LCDMon list of applications.
+            </summary>
+        </member>
+        <member name="F:LogiFrame.LgLcd.LgLcdConfigureContext.configCallback">
+            <summary>
+                Specifies a pointer to a function that should be called when the
+                user wants to configure your application. If no configuration panel
+                is provided or needed, leave this parameter NULL.
+            </summary>
+        </member>
+        <member name="F:LogiFrame.LgLcd.LgLcdConfigureContext.configContext">
+            <summary>
+                Specifies an arbitrary context value of the application that is passed
+                back to the client in the event that the registered configCallback
+                function is invoked.
+            </summary>
+        </member>
+        <member name="T:LogiFrame.LgLcd.LgLcdConnectContext">
+            <summary>
+                The lgLcdConnectContext contains all the information that is needed to
+                connect your application to LCDMon through lgLcdConnect(). Upon successful connection,
+                it also contains the connection handle that has to be used in subsequent calls to
+                lgLcdEnumerate() and lgLcdOpen().
+            </summary>
+        </member>
+        <member name="F:LogiFrame.LgLcd.LgLcdConnectContext.AppFriendlyName">
+            <summary>
+                Specifies a string that contains the 'friendly name' of your application.
+                This name is presented to the user whenever a list of applications is shown.
+            </summary>
+        </member>
+        <member name="F:LogiFrame.LgLcd.LgLcdConnectContext.IsPersistent">
+            <summary>
+                Specifies whether your connection is temporary (.isPersistent = FALSE) or
+                whether it is a regular connection that should be added to the list
+                (.isPersistent = TRUE).
+            </summary>
+        </member>
+        <member name="F:LogiFrame.LgLcd.LgLcdConnectContext.IsAutostartable">
+            <summary>
+                Specifies whether your application can be started by LCDMon or not.
+            </summary>
+        </member>
+        <member name="F:LogiFrame.LgLcd.LgLcdConnectContext.OnConfigure">
+            <summary>
+                Specifies context that is necessary to call back for configuration of
+                your application. See lgLcdConfigureContext for more details.
+            </summary>
+        </member>
+        <member name="F:LogiFrame.LgLcd.LgLcdConnectContext.Connection">
+            <summary>
+                Upon successful connection, this member holds the 'connection handle'
+                which is used in subsequent calls to lgLcdEnumerate() and lgLcdOpen().
+                A value of LGLCD_INVALID_CONNECTION denotes an invalid connection.
+            </summary>
+        </member>
+        <member name="T:LogiFrame.LgLcd.LgLcdDeviceDesc">
+            <summary>
+                The lgLcdDeviceDesc structure describes the properties of an attached Device.
+                This information is returned through a call to lgLcdEnumerate().
+            </summary>
+        </member>
+        <member name="F:LogiFrame.LgLcd.LgLcdDeviceDesc.Width">
+            <summary>
+                Specifies the width of the display in pixels.
+            </summary>
+        </member>
+        <member name="F:LogiFrame.LgLcd.LgLcdDeviceDesc.Height">
+            <summary>
+                Specifies the height of the display in pixels.
+            </summary>
+        </member>
+        <member name="F:LogiFrame.LgLcd.LgLcdDeviceDesc.Bpp">
+            <summary>
+                Specifies the depth of the bitmap in bits per pixel.
+            </summary>
+        </member>
+        <member name="F:LogiFrame.LgLcd.LgLcdDeviceDesc.NumSoftButtons">
+            <summary>
+                Specifies the number of soft buttons that the Device has.
+            </summary>
+        </member>
+        <member name="T:LogiFrame.LgLcd.LgLcdOpenContext">
+            <summary>
+                The lgLcdOpenContext contains all the information that is needed to open
+                a specified LCD display through lgLcdOpen(). Upon successful completion
+                of the open it contains the Device handle that has to be used in subsequent
+                calls to lgLcdReadSoftButtons(), lgLcdUpdateBitmap() and lgLcdClose().
+            </summary>
+        </member>
+        <member name="F:LogiFrame.LgLcd.LgLcdOpenContext.Connection">
+            <summary>
+                Specifies the connection (previously opened through lgLcdConnect()) which
+                this lgLcdOpen() call is for.
+            </summary>
+        </member>
+        <member name="F:LogiFrame.LgLcd.LgLcdOpenContext.Index">
+            <summary>
+                Specifies the index of the Device to open (see lgLcdEnumerate() for details).
+            </summary>
+        </member>
+        <member name="F:LogiFrame.LgLcd.LgLcdOpenContext.OnSoftbuttonsChanged">
+            <summary>
+                Specifies the details for the callback function that should be invoked when
+                Device has changes in its soft button status, i.e. the user has pressed or
+                a soft button. For details, see lgLcdSoftbuttonsChangedContext.
+            </summary>
+        </member>
+        <member name="F:LogiFrame.LgLcd.LgLcdOpenContext.Device">
+            <summary>
+                Upon successful opening, this member holds the Device handle which is used
+                in subsequent calls to lgLcdReadSoftButtons(), lgLcdUpdateBitmap() and
+                lgLcdClose(). A value of LGLCD_INVALID_DEVICE denotes an invalid Device.
+            </summary>
+        </member>
+        <member name="T:LogiFrame.LgLcd.LgLcdSoftbuttonsChangedContext">
+            <summary>
+                The lgLcdSoftbuttonsChangedContext is part of the lgLcdOpenContext and
+                is used to give the library enough information to allow changes in the
+                state of the soft buttons to be signaled into the calling application
+                through a callback.
+            </summary>
+        </member>
+        <member name="F:LogiFrame.LgLcd.LgLcdSoftbuttonsChangedContext.SoftbuttonsChangedCallback">
+            <summary>
+                Specifies a pointer to a function that should be called when the
+                state of the soft buttons changes. If no notification is needed,
+                leave this parameter NULL.
+            </summary>
+        </member>
+        <member name="F:LogiFrame.LgLcd.LgLcdSoftbuttonsChangedContext.SoftbuttonsChangedContext">
+            <summary>
+                Specifies an arbitrary context value of the application that is
+                passed back to the client in the event that soft buttons are being
+                pressed or released. The new value of the soft buttons is reported
+                in the dwButtons parameter of the callback function.
+            </summary>
+        </member>
+        <member name="T:LogiFrame.Location">
+            <summary>
+                Represents a location of a component.
+            </summary>
+        </member>
+        <member name="M:LogiFrame.Location.#ctor(LogiFrame.Location)">
+            <summary>
+                Initializes a new instance of the LogiFrame.Location class.
+            </summary>
+            <param name="parent">An instance of LogiFrame.Location to copy the coordinates from.</param>
+        </member>
+        <member name="M:LogiFrame.Location.#ctor(System.Int32,System.Int32)">
+            <summary>
+                Initializes a new instance of the LogiFrame.Location class.
+            </summary>
+            <param name="x">The initial x-coordinate.</param>
+            <param name="y">The initial x-coordinate.</param>
+        </member>
+        <member name="M:LogiFrame.Location.#ctor">
+            <summary>
+                Initializes a new instance of the LogiFrame.Location class.
+            </summary>
+        </member>
+        <member name="M:LogiFrame.Location.Add(System.Int32,System.Int32)">
+            <summary>
+                Adds a certain value to this LogiFrame.Location instance.
+            </summary>
+            <param name="x">Value to add to the x-coordinate.</param>
+            <param name="y">Value to add to the y-coordinate.</param>
+        </member>
+        <member name="M:LogiFrame.Location.Add(LogiFrame.Location)">
+            <summary>
+                Adds a certain value to this LogiFrame.Location instance.
+            </summary>
+            <param name="other">Value to add to the x- and y-coordinate.</param>
+        </member>
+        <member name="M:LogiFrame.Location.Set(System.Int32,System.Int32)">
+            <summary>
+                Set a certain value to this LogiFrame.Location instance.
+            </summary>
+            <param name="x">The new x-coordinate value.</param>
+            <param name="y">The new y-coordinate value.</param>
+        </member>
+        <member name="M:LogiFrame.Location.Set(LogiFrame.Location)">
+            <summary>
+                Set a certain value to this LogiFrame.Location instance.
+            </summary>
+            <param name="other">An instance of LogiFrame.Location to copy the coordinates from.</param>
+        </member>
+        <member name="M:LogiFrame.Location.op_Subtraction(LogiFrame.Location,LogiFrame.Location)">
+            <summary>
+                Translates a LogiFrame.Location by a given LogiFrame.Location.
+            </summary>
+            <param name="loc1">The LogiFrame.Location to translate.</param>
+            <param name="loc2">
+                A LogiFrame.Location that specifies the pair of numbers to subtract from
+                the coordinates of loc1.
+            </param>
+            <returns>
+                A LogiFrame.Location instance that is translated by the negative of the
+                other given LogiFrame.Location instance.
+            </returns>
+        </member>
+        <member name="M:LogiFrame.Location.op_Addition(LogiFrame.Location,LogiFrame.Location)">
+            <summary>
+                Translates a LogiFrame.Location by a given LogiFrame.Location.
+            </summary>
+            <param name="loc1">The LogiFrame.Location to translate.</param>
+            <param name="loc2">
+                A LogiFrame.Location that specifies the pair of numbers to add to
+                the coordinates of loc1.
+            </param>
+            <returns>
+                A LogiFrame.Location instance that is translated by the other
+                given LogiFrame.Location instance.
+            </returns>
+        </member>
+        <member name="M:LogiFrame.Location.op_Addition(LogiFrame.Location,LogiFrame.Size)">
+            <summary>
+                Translates a LogiFrame.Location by the dimentions of a LogiFrame.Size.
+            </summary>
+            <param name="loc">The LogiFrame.Location to translate.</param>
+            <param name="size">
+                The LogiFrame.Size that specifies the pair of numers to add to
+                the coordinates of loc.
+            </param>
+            <returns>
+                A LogiFrame.Location instance that is translated by the given
+                LogiFrame.Size instance.
+            </returns>
+        </member>
+        <member name="M:LogiFrame.Location.op_Implicit(LogiFrame.Location)~System.Drawing.Point">
+            <summary>
+                Converts the specified LogiFrame.Location instance to a System.Drawing.Point struct.
+            </summary>
+            <param name="loc">The LogiFrame.Location to be converted.</param>
+            <returns>The System.Drawing.Point that results from the conversion.</returns>
+        </member>
+        <member name="M:LogiFrame.Location.op_Implicit(System.Drawing.Point)~LogiFrame.Location">
+            <summary>
+                Converts the specified System.Drawing.Point struct to a LogiFrame.Location instance.
+            </summary>
+            <param name="point">The System.Drawing.Point to be converted.</param>
+            <returns>The LogiFrame.Location that results from the conversion.</returns>
+        </member>
+        <member name="M:LogiFrame.Location.GetHashCode">
+            <summary>
+                Returns a hash code for this LogiFrame.Location.
+            </summary>
+            <returns>An integer value that specifies a hash value for this LogiFrame.Location.</returns>
+        </member>
+        <member name="M:LogiFrame.Location.ToString">
+            <summary>
+                Converts this LogiFrame.Location to a human-readable string.
+            </summary>
+            <returns>A string that represents this LogiFrame.Location.</returns>
+        </member>
+        <member name="E:LogiFrame.Location.Changed">
+            <summary>
+                Occurs when the location has been changed.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Location.X">
+            <summary>
+                Gets or sets the x-coordinate of the LogiFrame.Location.
+            </summary>
+        </member>
+        <member name="P:LogiFrame.Location.Y">
+            <summary>
+                Gets or sets the y-coordinate of the LogiFrame.Location.
+            </summary>
+        </member>
+        <member name="T:LogiFrame.UpdatePriority">
+            <summary>
+                Represents the priority of the forthcoming LCD updates.
+            </summary>
+        </member>
+        <member name="F:LogiFrame.UpdatePriority.IdleNoShow">
+            <summary>
+                Lowest priority, disable displaying. Use this priority when you don't have
+                anything to show.
+            </summary>
+        </member>
+        <member name="F:LogiFrame.UpdatePriority.Background">
+            <summary>
+                Priority used for low priority items.
+            </summary>
+        </member>
+        <member name="F:LogiFrame.UpdatePriority.Normal">
+            <summary>
+                Normal priority, to be used by most applications most of the time.
+            </summary>
+        </member>
+        <member name="F:LogiFrame.UpdatePriority.Alert">
+            <summary>
+                Highest priority. To be used only for critical screens, such as 'your CPU
+                temperature is too high'
+            </summary>
+        </member>
+    </members>
+</doc>
