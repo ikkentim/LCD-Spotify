@@ -27,7 +27,7 @@ namespace SpotifyLCD
             _state = new Picture
             {
                 Image = Resources.Stop,
-                AutoSize = true,
+                IsAutoSize = true,
                 Location = new Location(2, Frame.LCDSize.Height - Resources.Stop.Height - 2)
             };
 
@@ -36,8 +36,8 @@ namespace SpotifyLCD
                 Font = new Font("Arial", 7.5f),
                 Location = new Location(0, 0),
                 Size = new Size(Frame.LCDSize.Width, 11),
-                UseCache = true,
-                EndSteps = 5,
+                IsUseCache = true,
+                EndStepsCount = 5,
                 MarqueeStyle = MarqueeStyle.Visibility
             };
 
@@ -46,8 +46,8 @@ namespace SpotifyLCD
                 Font = new Font("Arial", 7.5f),
                 Location = new Location(0, 11),
                 Size = new Size(Frame.LCDSize.Width, 11),
-                UseCache = true,
-                EndSteps = 5,
+                IsUseCache = true,
+                EndStepsCount = 5,
                 MarqueeStyle = MarqueeStyle.Visibility
             };
 
@@ -58,16 +58,16 @@ namespace SpotifyLCD
                 Size = new Size(Frame.LCDSize.Width, 11),
                 Interval = 500,
                 StepSize = 4,
-                EndSteps = 12,
-                UseCache = true,
+                EndStepsCount = 12,
+                IsUseCache = true,
                 MarqueeStyle = MarqueeStyle.Visibility,
-                Run = true,
+                IsRunning = true,
                 SyncedMarquees = { _artist, _track }
             };
 
             _playTime = new ProgressBar
             {
-                Horizontal = true,
+                IsHorizontal = true,
                 MinimumValue = 0,
                 MaximumValue = 60,
                 Value = 50,

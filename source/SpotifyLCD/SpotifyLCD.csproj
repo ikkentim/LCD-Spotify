@@ -30,8 +30,8 @@
     <SuiteName>Spotify LCD Suite</SuiteName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>index.htm</WebPage>
-    <ApplicationRevision>4</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationVersion>1.1.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -74,14 +74,13 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="LogiFrame">
-      <HintPath>..\..\libraries\LogiFrame.dll</HintPath>
+    <Reference Include="LogiFrame, Version=0.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\LogiFrame.0.0.2.0\lib\net45\LogiFrame.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\libraries\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="SpotifyAPI">
-      <HintPath>..\..\libraries\SpotifyAPI.dll</HintPath>
+    <Reference Include="SpotifyAPI, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\SpotifyAPI.1.2.0.0\lib\net45\SpotifyAPI.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -104,6 +103,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
     <None Include="SpotifyLCD_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
